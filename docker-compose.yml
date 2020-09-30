@@ -13,6 +13,11 @@ services:
     volumes:
       - "database:/var/lib/postgresql/data"
 
+  redis:
+    image: redis:6.0.8
+    networks:
+      - omero
+
   omeroserver:
     image: "openmicroscopy/omero-server:5.6"
     environment:
@@ -29,14 +34,48 @@ services:
     volumes:
       - "omero:/OMERO"
 
+  omerozarr:
+    image: openmicroscopy/omero-ms-zarr:0.1.6
+    environment:
+      CONFIG_omero_db_host: database
+      CONFIG_omero_db_user: omero
+      CONFIG_omero_db_pass: omero
+      CONFIG_omero_db_name: omero
+      CONFIG_omero_ms_zarr_net_path_image: /idr/zarr/v0.1/{image}.zarr/
+    networks:
+      - omero
+    volumes:
+      - "omero:/OMERO"
+
   omeroweb:
     image: "openmicroscopy/omero-web-standalone:5.6"
     environment:
       OMEROHOST: omeroserver
+      CONFIG_omero_web_debug: "true"
+      CONFIG_omero_web_caches: '{"default": {"BACKEND": "django_redis.cache.RedisCache", "LOCATION": "redis://redis:6379/0"}}'
+      CONFIG_omero_web_session__cookie__name: sessionid
+      CONFIG_omero_web_session__engine: django.contrib.sessions.backends.cache
     networks:
       - omero
     ports:
       - "4080:4080"
+
+  omerothumbnail:
+    image: openmicroscopy/omero-ms-thumbnail
+    networks:
+      - omero
+    volumes:
+      - "$PWD/thumbnail/config.yml:/opt/ms/conf/config.yaml:ro"
+
+  caddy:
+    image: caddy:2.1.1
+    # restart: unless-stopped
+    networks:
+      - omero
+    ports:
+      - "10080:80"
+    volumes:
+      - "$PWD/caddy/Caddyfile:/etc/caddy/Caddyfile:ro"
 
 networks:
   omero:

@@ -1,0 +1,15 @@
+# https://caddyserver.com/docs/caddyfile
+# https://github.com/caddyserver/dist/blob/master/config/Caddyfile
+:80
+log
+
+reverse_proxy /webgateway/render_thumbnail/* omerothumbnail:8080
+reverse_proxy /webclient/render_thumbnail/* omerothumbnail:8080
+reverse_proxy /webgateway/render_birds_eye_view/* omerothumbnail:8080
+reverse_proxy /webclient/render_birds_eye_view/* omerothumbnail:8080
+reverse_proxy /webgateway/get_thumbnails/* omerothumbnail:8080
+reverse_proxy /webclient/get_thumbnails/* omerothumbnail:8080
+
+reverse_proxy /idr/zarr/* omerozarr:8080
+
+reverse_proxy /* omeroweb:4080
