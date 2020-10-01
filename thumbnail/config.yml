@@ -19,7 +19,7 @@ session-store:
   # uri: "jdbc:postgresql://database:5432/omero?user=omero&password=omero"
   uri: "redis://:@redis:6379/0"
 
- # Configuration for zipkin http tracing
+# Configuration for zipkin http tracing
 # http-tracing:
 #   enabled: true
 #   zipkin-url: "http://localhost:9411/api/v2/spans"

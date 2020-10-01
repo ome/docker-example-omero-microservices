@@ -67,6 +67,15 @@ services:
     volumes:
       - "$PWD/thumbnail/config.yml:/opt/ms/conf/config.yaml:ro"
 
+  omeroimageregion:
+    # omero-ms-thumbnail 0.5.2
+    build: ./imageregion/
+    networks:
+      - omero
+    volumes:
+      - "$PWD/imageregion/config.yml:/opt/ms/conf/config.yaml:ro"
+      - "omero:/OMERO"
+
   caddy:
     image: caddy:2.1.1
     # restart: unless-stopped
