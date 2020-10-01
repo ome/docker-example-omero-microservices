@@ -17,7 +17,7 @@ session-store:
   # * https://jdbc.postgresql.org/documentation/80/connect.html
   # * https://github.com/lettuce-io/lettuce-core/wiki/Redis-URI-and-connection-details
   # uri: "jdbc:postgresql://database:5432/omero?user=omero&password=omero"
-  uri: "redis://:@redis:6379/1"
+  uri: "redis://:@redis:6379/0"
 
  # Configuration for zipkin http tracing
 # http-tracing:
