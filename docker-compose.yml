@@ -68,12 +68,16 @@ services:
       - "$PWD/thumbnail/config.yml:/opt/ms/conf/config.yaml:ro"
 
   omeroimageregion:
-    # omero-ms-thumbnail 0.5.2
+    # omero-ms-image-region 0.5.3-SNAPSHOT
     build: ./imageregion/
+    environment:
+      # Enable debug logs
+      JAVA_OPTS: -Dlogback.configurationFile=/opt/ms/conf/logback-debug.xml
     networks:
       - omero
     volumes:
       - "$PWD/imageregion/config.yml:/opt/ms/conf/config.yaml:ro"
+      - "$PWD/imageregion/logback-debug.xml:/opt/ms/conf/logback-debug.xml:ro"
       - "omero:/OMERO"
 
   caddy:

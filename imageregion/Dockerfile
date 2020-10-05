@@ -5,13 +5,14 @@ FROM ${IMAGE}
 
 WORKDIR /opt/ms
 
-RUN wget -q https://ci.appveyor.com/api/buildjobs/t1rcl93loph2bcts/artifacts/build%2Fdistributions%2Fomero-ms-thumbnail-0.5.2.zip \
-        -O omero-ms-thumbnail-0.5.2.zip && \
-    unzip -q omero-ms-thumbnail-0.5.2.zip && \
-    mv omero-ms-thumbnail-0.5.2/* . && \
-    rm -r omero-ms-thumbnail-0.5.2.zip omero-ms-thumbnail-0.5.2
+ARG NAME=omero-ms-image-region-0.5.3-SNAPSHOT-7
+RUN wget -q https://ci.appveyor.com/api/buildjobs/dk9f2th3rto31yt2/artifacts/build%2Fdistributions%2F${NAME}.zip \
+        -O ${NAME}.zip && \
+    unzip -q ${NAME} && \
+    mv ${NAME}/* . && \
+    rm -r ${NAME}.zip ${NAME}
 
 EXPOSE 8080
 ENV JAVA_OPTS "-Xmx1G"
 
-ENTRYPOINT ["sh", "/opt/ms/bin/omero-ms-thumbnail"]
+ENTRYPOINT ["sh", "/opt/ms/bin/omero-ms-image-region"]

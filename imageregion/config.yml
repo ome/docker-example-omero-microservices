@@ -17,18 +17,18 @@ max-active-channels: 6
 # OMERO server that the microservice will communicate with (as a client)
 omero:
   host: omeroserver
-  port: 4064
+  port: "4064"
 
 # Copy of the OMERO server configuration which will be reused
 omero.server:
   omero.data.dir: /OMERO
   omero.db.host: database
   omero.db.name: omero
-  omero.db.port: 5432
+  omero.db.port: "5432"
   omero.db.user: omero
   omero.db.pass: omero
-  # omero.script_repo_root: /opt/omero/lib/scripts
-  omero.pixeldata.max_tile_length: 2048
+  omero.script_repo_root: /tmp # /NON_EXISTENT/lib/scripts
+  omero.pixeldata.max_tile_length: "2048"
 
 # OMERO.web configuration
 omero.web:
