@@ -84,14 +84,14 @@ services:
     depends_on:
       - omeroserver
       - redis
-    environment:
+#    environment:
       # Enable debug logs
-      JAVA_OPTS: -Dlogback.configurationFile=/opt/ms/conf/logback-debug.xml
+#      JAVA_OPTS: -Dlogback.configurationFile=/opt/ms/conf/logback-debug.xml
     networks:
       - omero
     volumes:
       - "$PWD/imageregion/config.yml:/opt/ms/conf/config.yaml:ro"
-      - "$PWD/imageregion/logback-debug.xml:/opt/ms/conf/logback-debug.xml:ro"
+#      - "$PWD/imageregion/logback-debug.xml:/opt/ms/conf/logback-debug.xml:ro"
       - "omero:/OMERO"
       - "omeroscripts:/opt/omero/server/OMERO.server/lib/scripts"
 
