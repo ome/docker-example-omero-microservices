@@ -13,3 +13,9 @@ Log in as user `root` password `omero`.
 
     docker-compose up -d
     docker-compose logs -f
+
+
+## Included microservices:
+- [omero-ms-zarr](https://github.com/ome/omero-ms-zarr)
+- [omero-ms-thumbnail](https://github.com/glencoesoftware/omero-ms-thumbnail)
+- [omero-ms-image-region](https://github.com/glencoesoftware/omero-ms-image-region)
