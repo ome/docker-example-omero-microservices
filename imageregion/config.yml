@@ -3,6 +3,9 @@
 # The port that the microservice will listen on
 port: 8080
 
+# Number of threads in the worker pool
+# worker_pool_size: 1
+
 # Configuration for request parsing limits
 #  * https://vertx.io/docs/apidocs/io/vertx/core/http/HttpServerOptions.html#setMaxInitialLineLength-int-
 #  * https://vertx.io/docs/apidocs/io/vertx/core/http/HttpServerOptions.html#setMaxHeaderSize-int-
@@ -17,9 +20,11 @@ max-active-channels: 6
 # OMERO server that the microservice will communicate with (as a client)
 omero:
   host: omeroserver
-  port: "4064"
+  # integer
+  port: 4064
 
 # Copy of the OMERO server configuration which will be reused
+# All values must be strings
 omero.server:
   omero.data.dir: /OMERO
   omero.db.host: database
@@ -27,7 +32,8 @@ omero.server:
   omero.db.port: "5432"
   omero.db.user: omero
   omero.db.pass: omero
-  omero.script_repo_root: /tmp # /NON_EXISTENT/lib/scripts
+  # Needed because LUTs are stored here
+  omero.script_repo_root: /opt/omero/server/OMERO.server/lib/scripts/
   omero.pixeldata.max_tile_length: "2048"
 
 # OMERO.web configuration
