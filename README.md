@@ -1,5 +1,8 @@
 # OMERO.server and OMERO.web with micro-services (docker-compose)
 
+[![Actions Status](https://github.com/ome/docker-example-omero-microservices/workflows/Build/badge.svg)](https://github.com/ome/docker-example-omero-microservices/actions)
+
+
 This is an example of running OMERO.server, OMERO.web and microservices in Docker.
 This is under development.
 
