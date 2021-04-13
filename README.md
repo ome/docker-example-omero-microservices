@@ -14,6 +14,12 @@ Log in as user `root` password `omero`.
 
 ## Run
 
+First pull the latest major versions of the containers:
+
+    docker-compose pull
+
+Then start the containers:
+
     docker-compose up -d
     docker-compose logs -f
 
