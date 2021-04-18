@@ -18,6 +18,7 @@ services:
     networks:
       - omero
 
+  omeroserver:
     # This container uses the tag for the latest server release of OMERO 5
     # To upgrade to the next major release, increment the major version number
     image: "openmicroscopy/omero-server:5"
